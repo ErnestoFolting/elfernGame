@@ -5,7 +5,6 @@ using namespace System;
 using namespace System::Drawing;
 using namespace System::ComponentModel;
 using namespace System::Windows::Forms;
-int cardNum;
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Application::EnableVisualStyles();
@@ -16,13 +15,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 System::Void elfernGame::MyForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	cli::array<Button^>^ buttons = gcnew cli::array<Button^>(14);
+	
 	Button^ check = gcnew Button();
 	int i = 0;
 	check->BackgroundImage = imageList1->Images[i];
 	check->Size = check->BackgroundImage->Size;
 	this->Controls->Add(check);
 	check->Click += gcnew System::EventHandler(this, &MyForm::check_Click);
-	cardNum = i;
 	Button^ check2 = gcnew Button();
 	check->Location = System::Drawing::Point(25, 0);
 	i = 2;
@@ -30,10 +30,13 @@ System::Void elfernGame::MyForm::button1_Click(System::Object^ sender, System::E
 	check2->Size = check2->BackgroundImage->Size;
 	this->Controls->Add(check2);
 	check2->Click += gcnew System::EventHandler(this, &MyForm::check_Click);
-	cardNum = i;
+	check2->Name = "checkkkk";
+	buttons[0] = check;
+	buttons[1] = check2;
+	buttons[0] = nullptr;
 }
 
 System::Void elfernGame::MyForm::check_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	MessageBox::Show("From check", Convert::ToString(cardNum));
+	MessageBox::Show("From check",Convert::ToString(sender->ToString()));
 }
