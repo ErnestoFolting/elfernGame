@@ -134,7 +134,7 @@ System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::Eve
 	button66->Visible = false;
 	updateTable(tb);
 	timer2->Stop();
-	timer3->Start();
+	timer6->Start();
 }
 
 //Computer's move 
@@ -179,7 +179,11 @@ System::Void elfernGame::MyForm::timer5_Tick(System::Object^ sender, System::Eve
 //Give cards after player's move
 System::Void elfernGame::MyForm::timer6_Tick(System::Object^ sender, System::EventArgs^ e)
 {
+	table tb = getTable();
+	tb.giveCardsAfterPlayerMove();
+	updateTable(tb);
 	timer6->Stop();
+	timer3->Start();
 }
 
 //get tb from table
