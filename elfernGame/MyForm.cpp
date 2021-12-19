@@ -16,19 +16,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 void elfernGame::MyForm::updateTable(table tb)
 {
-	
+	resetNames();
+	for (int i = 0; i < 32; i++) {
+		buttonsPlayer[31-i]->Visible = false;
+		buttonsComputer[31-i]->Visible = false;
+	}
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
-		buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
-		//buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
+		//buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
+		buttonsComputer[i]->Name = Convert::ToString(tb.computerCards[i]);
+		buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
 		buttonsComputer[tb.computerCards.size() - i - 1]->Visible = true;
-		buttonsComputer[i]->Enabled = false;
+
 	}
 
 	//Player's cards drawing
 	for (int i = 0; i < tb.playerCards.size(); i++) {
+		buttonsPlayer[i]->Name = Convert::ToString(tb.playerCards[i]);
 		buttonsPlayer[i]->BackgroundImage = imageList1->Images[tb.playerCards[i]];
-		buttonsPlayer[tb.playerCards.size() - i - 1]->Visible = true;
+		//buttonsPlayer[tb.playerCards.size() - i - 1]->Visible = true;
+		buttonsPlayer[i]->Visible = true;
 	}
 
 	//deck empty check
@@ -37,10 +44,113 @@ void elfernGame::MyForm::updateTable(table tb)
 		button67->Visible = false;
 		label3->Visible = false;
 	}
+
+	//Current cards drawing
+
+	if (tb.computerCurrent != -1) {
+		button66->Visible = true;
+		button66->Name = Convert::ToString(tb.computerCurrent);
+		button66->BackgroundImage = imageList1->Images[tb.computerCurrent];
+	}
+	if (tb.playerCurrent != -1) {
+		button65->Visible = true;
+		button65->Name = Convert::ToString(tb.playerCurrent);
+		button65->BackgroundImage = imageList1->Images[tb.playerCurrent];
+	}
+}
+
+void elfernGame::MyForm::playerMove(int cardId)
+{
+	table tb = getTable();
+	//MessageBox::Show(Convert::ToString(cardId));
+	disableButtons();
+	tb.playerMove(cardId);
+	label1->Visible = true;
+	updateTable(tb);
+	timer1->Start();
+}
+
+System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	table tb = getTable();
+	int cardToMove = rand() % tb.computerCards.size();
+	tb.computerMove(cardToMove);
+	label2->Visible = true;
+	updateTable(tb);
+	timer1->Stop();
+	timer2->Start();
+}
+
+System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	table tb = getTable();
+	tb.move();
+	label1->Visible = false;
+	label2->Visible = false;
+	button65->Visible = false;
+	button66->Visible = false;
+	updateTable(tb);
+	enableButtons();
+	timer2->Stop();
+}
+
+
+table elfernGame::MyForm::getTable()
+{
+	table tb;
+	for (int i = 0; i < 32; i++) {
+		if (buttonsPlayer[i]->Name != "") {
+			tb.playerCards.push_back(Convert::ToInt32(buttonsPlayer[i]->Name));
+		}
+	}
+	for (int i = 0; i < 32; i++) {
+		if (buttonsComputer[i]->Name != "") {
+			tb.computerCards.push_back(Convert::ToInt32(buttonsComputer[i]->Name));
+		}
+	}
+	vector<int> temp;
+	for (int i = 0; i < 32; i++) {
+		if (!tb.contains(tb.computerCards, i) && !tb.contains(tb.playerCards, i)) {
+			temp.push_back(i);
+		}
+	}
+	tb.deck = temp;
+	if (button65->Name != "") {
+		tb.playerCurrent = Convert::ToInt32(button65->Name);
+	}
+	if (button66->Name != "") {
+		tb.computerCurrent = Convert::ToInt32(button66->Name);
+	}
+	return tb;
+}
+
+void elfernGame::MyForm::resetNames()
+{
+	for (int i = 0; i < 32; i++) {
+		buttonsPlayer[i]->Name = "";
+		buttonsComputer[i]->Name = "";
+	}
+	button65->Name = "";
+	button66->Name = "";
+}
+
+void elfernGame::MyForm::disableButtons()
+{
+	for (int i = 0; i < 32; i++) {
+		buttonsPlayer[i]->Enabled = false;
+	}
+}
+
+void elfernGame::MyForm::enableButtons()
+{
+	for (int i = 0; i < 32; i++) {
+		buttonsPlayer[i]->Enabled = true;
+	}
 }
 
 System::Void elfernGame::MyForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	playerMove(0);
 }
 
 
@@ -129,3 +239,5 @@ System::Void elfernGame::MyForm::button68_Click(System::Object^ sender, System::
 	button67->Visible = true;
 	label3->Visible = true;
 }
+
+

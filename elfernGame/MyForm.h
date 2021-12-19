@@ -113,6 +113,9 @@ namespace elfernGame {
 	private: System::Windows::Forms::Button^ button68;
 	private: System::Windows::Forms::StatusStrip^ statusStrip1;
 	private: System::Windows::Forms::ToolStripStatusLabel^ status;
+	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Timer^ timer2;
+	private: System::Windows::Forms::Timer^ timer3;
 
 
 
@@ -254,6 +257,9 @@ namespace elfernGame {
 			this->button68 = (gcnew System::Windows::Forms::Button());
 			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
 			this->status = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -304,6 +310,7 @@ namespace elfernGame {
 			this->button1->TabIndex = 0;
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Visible = false;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -314,6 +321,7 @@ namespace elfernGame {
 			this->button2->TabIndex = 0;
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Visible = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -324,6 +332,7 @@ namespace elfernGame {
 			this->button3->TabIndex = 0;
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Visible = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button4
 			// 
@@ -334,6 +343,7 @@ namespace elfernGame {
 			this->button4->TabIndex = 0;
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Visible = false;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// button5
 			// 
@@ -344,6 +354,7 @@ namespace elfernGame {
 			this->button5->TabIndex = 0;
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Visible = false;
+			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
 			// 
 			// button6
 			// 
@@ -354,6 +365,7 @@ namespace elfernGame {
 			this->button6->TabIndex = 0;
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Visible = false;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
 			// 
 			// button7
 			// 
@@ -364,6 +376,7 @@ namespace elfernGame {
 			this->button7->TabIndex = 0;
 			this->button7->UseVisualStyleBackColor = true;
 			this->button7->Visible = false;
+			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 			// 
 			// button8
 			// 
@@ -374,6 +387,7 @@ namespace elfernGame {
 			this->button8->TabIndex = 0;
 			this->button8->UseVisualStyleBackColor = true;
 			this->button8->Visible = false;
+			this->button8->Click += gcnew System::EventHandler(this, &MyForm::button8_Click);
 			// 
 			// button9
 			// 
@@ -384,6 +398,7 @@ namespace elfernGame {
 			this->button9->TabIndex = 0;
 			this->button9->UseVisualStyleBackColor = true;
 			this->button9->Visible = false;
+			this->button9->Click += gcnew System::EventHandler(this, &MyForm::button9_Click);
 			// 
 			// button10
 			// 
@@ -394,6 +409,7 @@ namespace elfernGame {
 			this->button10->TabIndex = 0;
 			this->button10->UseVisualStyleBackColor = true;
 			this->button10->Visible = false;
+			this->button10->Click += gcnew System::EventHandler(this, &MyForm::button10_Click);
 			// 
 			// button11
 			// 
@@ -404,6 +420,7 @@ namespace elfernGame {
 			this->button11->TabIndex = 0;
 			this->button11->UseVisualStyleBackColor = true;
 			this->button11->Visible = false;
+			this->button11->Click += gcnew System::EventHandler(this, &MyForm::button11_Click);
 			// 
 			// button12
 			// 
@@ -414,6 +431,7 @@ namespace elfernGame {
 			this->button12->TabIndex = 0;
 			this->button12->UseVisualStyleBackColor = true;
 			this->button12->Visible = false;
+			this->button12->Click += gcnew System::EventHandler(this, &MyForm::button12_Click);
 			// 
 			// button13
 			// 
@@ -424,6 +442,7 @@ namespace elfernGame {
 			this->button13->TabIndex = 0;
 			this->button13->UseVisualStyleBackColor = true;
 			this->button13->Visible = false;
+			this->button13->Click += gcnew System::EventHandler(this, &MyForm::button13_Click);
 			// 
 			// button14
 			// 
@@ -434,6 +453,7 @@ namespace elfernGame {
 			this->button14->TabIndex = 0;
 			this->button14->UseVisualStyleBackColor = true;
 			this->button14->Visible = false;
+			this->button14->Click += gcnew System::EventHandler(this, &MyForm::button14_Click);
 			// 
 			// button15
 			// 
@@ -444,6 +464,7 @@ namespace elfernGame {
 			this->button15->TabIndex = 0;
 			this->button15->UseVisualStyleBackColor = true;
 			this->button15->Visible = false;
+			this->button15->Click += gcnew System::EventHandler(this, &MyForm::button15_Click);
 			// 
 			// button16
 			// 
@@ -454,6 +475,7 @@ namespace elfernGame {
 			this->button16->TabIndex = 0;
 			this->button16->UseVisualStyleBackColor = true;
 			this->button16->Visible = false;
+			this->button16->Click += gcnew System::EventHandler(this, &MyForm::button16_Click);
 			// 
 			// button17
 			// 
@@ -464,6 +486,7 @@ namespace elfernGame {
 			this->button17->TabIndex = 0;
 			this->button17->UseVisualStyleBackColor = true;
 			this->button17->Visible = false;
+			this->button17->Click += gcnew System::EventHandler(this, &MyForm::button17_Click);
 			// 
 			// button18
 			// 
@@ -474,6 +497,7 @@ namespace elfernGame {
 			this->button18->TabIndex = 0;
 			this->button18->UseVisualStyleBackColor = true;
 			this->button18->Visible = false;
+			this->button18->Click += gcnew System::EventHandler(this, &MyForm::button18_Click);
 			// 
 			// button19
 			// 
@@ -484,6 +508,7 @@ namespace elfernGame {
 			this->button19->TabIndex = 0;
 			this->button19->UseVisualStyleBackColor = true;
 			this->button19->Visible = false;
+			this->button19->Click += gcnew System::EventHandler(this, &MyForm::button19_Click);
 			// 
 			// button20
 			// 
@@ -494,6 +519,7 @@ namespace elfernGame {
 			this->button20->TabIndex = 0;
 			this->button20->UseVisualStyleBackColor = true;
 			this->button20->Visible = false;
+			this->button20->Click += gcnew System::EventHandler(this, &MyForm::button20_Click);
 			// 
 			// button21
 			// 
@@ -504,6 +530,7 @@ namespace elfernGame {
 			this->button21->TabIndex = 0;
 			this->button21->UseVisualStyleBackColor = true;
 			this->button21->Visible = false;
+			this->button21->Click += gcnew System::EventHandler(this, &MyForm::button21_Click);
 			// 
 			// button22
 			// 
@@ -514,6 +541,7 @@ namespace elfernGame {
 			this->button22->TabIndex = 0;
 			this->button22->UseVisualStyleBackColor = true;
 			this->button22->Visible = false;
+			this->button22->Click += gcnew System::EventHandler(this, &MyForm::button22_Click);
 			// 
 			// button23
 			// 
@@ -524,6 +552,7 @@ namespace elfernGame {
 			this->button23->TabIndex = 0;
 			this->button23->UseVisualStyleBackColor = true;
 			this->button23->Visible = false;
+			this->button23->Click += gcnew System::EventHandler(this, &MyForm::button23_Click);
 			// 
 			// button24
 			// 
@@ -534,6 +563,7 @@ namespace elfernGame {
 			this->button24->TabIndex = 0;
 			this->button24->UseVisualStyleBackColor = true;
 			this->button24->Visible = false;
+			this->button24->Click += gcnew System::EventHandler(this, &MyForm::button24_Click);
 			// 
 			// button25
 			// 
@@ -544,6 +574,7 @@ namespace elfernGame {
 			this->button25->TabIndex = 0;
 			this->button25->UseVisualStyleBackColor = true;
 			this->button25->Visible = false;
+			this->button25->Click += gcnew System::EventHandler(this, &MyForm::button25_Click);
 			// 
 			// button26
 			// 
@@ -554,6 +585,7 @@ namespace elfernGame {
 			this->button26->TabIndex = 0;
 			this->button26->UseVisualStyleBackColor = true;
 			this->button26->Visible = false;
+			this->button26->Click += gcnew System::EventHandler(this, &MyForm::button26_Click);
 			// 
 			// button27
 			// 
@@ -564,6 +596,7 @@ namespace elfernGame {
 			this->button27->TabIndex = 0;
 			this->button27->UseVisualStyleBackColor = true;
 			this->button27->Visible = false;
+			this->button27->Click += gcnew System::EventHandler(this, &MyForm::button27_Click);
 			// 
 			// button28
 			// 
@@ -574,6 +607,7 @@ namespace elfernGame {
 			this->button28->TabIndex = 0;
 			this->button28->UseVisualStyleBackColor = true;
 			this->button28->Visible = false;
+			this->button28->Click += gcnew System::EventHandler(this, &MyForm::button28_Click);
 			// 
 			// button29
 			// 
@@ -584,6 +618,7 @@ namespace elfernGame {
 			this->button29->TabIndex = 0;
 			this->button29->UseVisualStyleBackColor = true;
 			this->button29->Visible = false;
+			this->button29->Click += gcnew System::EventHandler(this, &MyForm::button29_Click);
 			// 
 			// button30
 			// 
@@ -594,6 +629,7 @@ namespace elfernGame {
 			this->button30->TabIndex = 0;
 			this->button30->UseVisualStyleBackColor = true;
 			this->button30->Visible = false;
+			this->button30->Click += gcnew System::EventHandler(this, &MyForm::button30_Click);
 			// 
 			// button31
 			// 
@@ -604,6 +640,7 @@ namespace elfernGame {
 			this->button31->TabIndex = 0;
 			this->button31->UseVisualStyleBackColor = true;
 			this->button31->Visible = false;
+			this->button31->Click += gcnew System::EventHandler(this, &MyForm::button31_Click);
 			// 
 			// button32
 			// 
@@ -614,6 +651,7 @@ namespace elfernGame {
 			this->button32->TabIndex = 0;
 			this->button32->UseVisualStyleBackColor = true;
 			this->button32->Visible = false;
+			this->button32->Click += gcnew System::EventHandler(this, &MyForm::button32_Click);
 			// 
 			// button33
 			// 
@@ -938,6 +976,7 @@ namespace elfernGame {
 			// button65
 			// 
 			this->button65->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button65->Enabled = false;
 			this->button65->Location = System::Drawing::Point(415, 244);
 			this->button65->Name = L"button65";
 			this->button65->Size = System::Drawing::Size(111, 180);
@@ -948,6 +987,7 @@ namespace elfernGame {
 			// button66
 			// 
 			this->button66->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button66->Enabled = false;
 			this->button66->Location = System::Drawing::Point(604, 244);
 			this->button66->Name = L"button66";
 			this->button66->Size = System::Drawing::Size(111, 180);
@@ -1038,6 +1078,16 @@ namespace elfernGame {
 			this->status->Name = L"status";
 			this->status->Size = System::Drawing::Size(91, 25);
 			this->status->Text = L"Let\'s Start!";
+			// 
+			// timer1
+			// 
+			this->timer1->Interval = 3000;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			// 
+			// timer2
+			// 
+			this->timer2->Interval = 2000;
+			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
 			// 
 			// MyForm
 			// 
@@ -1134,8 +1184,108 @@ namespace elfernGame {
 	cli::array<Button^>^ buttonsPlayer = gcnew cli::array<Button^>(32);
 	cli::array<Button^>^ buttonsComputer = gcnew cli::array<Button^>(32);
 	private: void updateTable(table tb);
+	private: void playerMove(int cardId);
+	private: table getTable();
+	private: void resetNames();
+	private: void disableButtons();
+	private: void enableButtons();
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button68_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(1);
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(2);
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(3);
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(4);
+}
+private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(5);
+}
+private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(6);
+}
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(7);
+}
+private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(8);
+}
+private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(9);
+}
+private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(10);
+}
+private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(11);
+}
+private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(12);
+}
+private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(13);
+}
+private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(14);
+}
+private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(15);
+}
+private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(16);
+}
+private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(17);
+}
+private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(18);
+}
+private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(19);
+}
+private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(20);
+}
+private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(21);
+}
+private: System::Void button23_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(22);
+}
+private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(23);
+}
+private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(24);
+}
+private: System::Void button26_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(25);
+}
+private: System::Void button27_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(26);
+}
+private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(27);
+}
+private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(28);
+}
+private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(29);
+}
+private: System::Void button31_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(30);
+}
+private: System::Void button32_Click(System::Object^ sender, System::EventArgs^ e) {
+	playerMove(31);
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e);
 };
 }
