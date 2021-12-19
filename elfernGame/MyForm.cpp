@@ -16,17 +16,42 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 void elfernGame::MyForm::updateTable(table tb)
 {
-	resetNames();
-	for (int i = 0; i < 32; i++) {
-		buttonsPlayer[31-i]->Visible = false;
-		buttonsComputer[31-i]->Visible = false;
+
+	resetNames(tb);
+
+	if (tb.playerCards.size() != 0) {
+		for (int i = tb.playerCards.size() - 1; i >= 0; i--) {
+			buttonsPlayer[i]->Visible = true;
+		}
+		for (int i = 31; i >= tb.playerCards.size(); i--) {
+			buttonsPlayer[i]->Visible = false;
+		}
 	}
+	else {
+		buttonsPlayer[0]->Visible = false;
+	}
+	if (tb.computerCards.size() != 0) {
+		for (int i = tb.computerCards.size() - 1; i >= 0; i--) {
+			buttonsComputer[i]->Visible = true;
+		}
+		for (int i = 31; i >= tb.computerCards.size(); i--) {
+			buttonsComputer[i]->Visible = false;
+		}
+	}
+	else {
+		buttonsComputer[0]->Visible = false;
+	}
+
+
+
+	
+	
+
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
 		//buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
 		buttonsComputer[i]->Name = Convert::ToString(tb.computerCards[i]);
 		buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
-		buttonsComputer[tb.computerCards.size() - i - 1]->Visible = true;
 
 	}
 
@@ -34,8 +59,6 @@ void elfernGame::MyForm::updateTable(table tb)
 	for (int i = 0; i < tb.playerCards.size(); i++) {
 		buttonsPlayer[i]->Name = Convert::ToString(tb.playerCards[i]);
 		buttonsPlayer[i]->BackgroundImage = imageList1->Images[tb.playerCards[i]];
-		//buttonsPlayer[tb.playerCards.size() - i - 1]->Visible = true;
-		buttonsPlayer[i]->Visible = true;
 	}
 
 	//deck empty check
@@ -124,7 +147,7 @@ table elfernGame::MyForm::getTable()
 	return tb;
 }
 
-void elfernGame::MyForm::resetNames()
+void elfernGame::MyForm::resetNames(table tb)
 {
 	for (int i = 0; i < 32; i++) {
 		buttonsPlayer[i]->Name = "";

@@ -1186,7 +1186,7 @@ namespace elfernGame {
 	private: void updateTable(table tb);
 	private: void playerMove(int cardId);
 	private: table getTable();
-	private: void resetNames();
+	private: void resetNames(table tb);
 	private: void disableButtons();
 	private: void enableButtons();
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);

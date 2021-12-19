@@ -31,7 +31,7 @@ struct table {
 		return flag;
 	}
 	void start() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 16; i++) {
 			playerCards.push_back(deck.back());
 			deck.pop_back();
 			computerCards.push_back(deck.back());
