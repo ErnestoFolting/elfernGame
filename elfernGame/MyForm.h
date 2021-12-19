@@ -1119,7 +1119,7 @@ namespace elfernGame {
 			// 
 			// timer1
 			// 
-			this->timer1->Interval = 3000;
+			this->timer1->Interval = 2000;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
 			// timer2
@@ -1144,6 +1144,7 @@ namespace elfernGame {
 			// 
 			// timer6
 			// 
+			this->timer6->Interval = 2000;
 			this->timer6->Tick += gcnew System::EventHandler(this, &MyForm::timer6_Tick);
 			// 
 			// MyForm

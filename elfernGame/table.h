@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <ctime>
+#include <algorithm> 
 using namespace std;
 
 struct table {
@@ -76,7 +77,18 @@ struct table {
 		playerCurrent = -1;
 		computerCurrent = -1;
 	}
+
+	void removeFromDeck(int cardId) {
+		vector<int> temp;
+		for (int i = 0; i < deck.size(); i++) {
+			if (deck[i] != cardId) {
+				temp.push_back(deck[i]);
+			}
+		}
+		deck = temp;
+	}
 	void giveCardsAfterPlayerMove() {
+		random_shuffle(deck.begin(), deck.end());
 		if (deck.size() != 0) {
 			playerCards.push_back(deck.back());
 			deck.pop_back();
@@ -87,6 +99,7 @@ struct table {
 		}
 	}
 	void giveCardsAfterComputerMove() {
+		random_shuffle(deck.begin(), deck.end());
 		if (deck.size() != 0) {
 			computerCards.push_back(deck.back());
 			deck.pop_back();
