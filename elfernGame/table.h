@@ -31,7 +31,7 @@ struct table {
 		return flag;
 	}
 	void start() {
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 6; i++) {
 			playerCards.push_back(deck.back());
 			deck.pop_back();
 			computerCards.push_back(deck.back());
@@ -75,5 +75,25 @@ struct table {
 		}
 		playerCurrent = -1;
 		computerCurrent = -1;
+	}
+	void giveCardsAfterPlayerMove() {
+		if (deck.size() != 0) {
+			playerCards.push_back(deck.back());
+			deck.pop_back();
+		}
+		if (deck.size() != 0) {
+			computerCards.push_back(deck.back());
+			deck.pop_back();
+		}
+	}
+	void giveCardsAfterComputerMove() {
+		if (deck.size() != 0) {
+			computerCards.push_back(deck.back());
+			deck.pop_back();
+		}
+		if (deck.size() != 0) {
+			playerCards.push_back(deck.back());
+			deck.pop_back();
+		}
 	}
 };

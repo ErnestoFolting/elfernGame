@@ -14,6 +14,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	return 0;
 }
 
+
+//Draw the table 
 void elfernGame::MyForm::updateTable(table tb)
 {
 
@@ -41,11 +43,6 @@ void elfernGame::MyForm::updateTable(table tb)
 	else {
 		buttonsComputer[0]->Visible = false;
 	}
-
-
-
-	
-	
 
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
@@ -82,17 +79,39 @@ void elfernGame::MyForm::updateTable(table tb)
 	}
 }
 
+//Player's move 
 void elfernGame::MyForm::playerMove(int cardId)
 {
+	//redirect to player answer
+	if (label2->Visible == true) {
+		button65->Name = (Convert::ToString(cardId));
+		playerAnswer(cardId);
+	}
+	else {
+		table tb = getTable();
+		//MessageBox::Show(Convert::ToString(cardId));
+		disableButtons();
+		tb.playerMove(cardId);
+		label1->Visible = true;
+		status->Text = "Computer's move";
+		updateTable(tb);
+		timer1->Start();
+	}
+	
+}
+
+//player's answer
+void elfernGame::MyForm::playerAnswer(int cardId)
+{
 	table tb = getTable();
-	//MessageBox::Show(Convert::ToString(cardId));
 	disableButtons();
 	tb.playerMove(cardId);
 	label1->Visible = true;
 	updateTable(tb);
-	timer1->Start();
+	timer4->Start();
 }
 
+//Computer's answer
 System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
@@ -104,6 +123,7 @@ System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::Eve
 	timer2->Start();
 }
 
+//table move after player's move
 System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
@@ -113,11 +133,56 @@ System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::Eve
 	button65->Visible = false;
 	button66->Visible = false;
 	updateTable(tb);
-	enableButtons();
 	timer2->Stop();
+	timer3->Start();
 }
 
+//Computer's move 
+System::Void elfernGame::MyForm::timer3_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	table tb = getTable();
+	int cardToMove = rand() % tb.computerCards.size();
+	tb.computerMove(cardToMove);
+	label2->Visible = true;
+	updateTable(tb);
+	status->Text = "Your move";
+	enableButtons();
+	timer3->Stop();
+}
 
+//table move after computer's move
+System::Void elfernGame::MyForm::timer4_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+
+	
+	table tb = getTable();
+	tb.move();
+	label1->Visible = false;
+	label2->Visible = false;
+	button65->Visible = false;
+	button66->Visible = false;
+	updateTable(tb);
+	timer4->Stop();
+	timer5->Start();
+}
+
+//Give cards after computer's move
+System::Void elfernGame::MyForm::timer5_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	table tb = getTable();
+	tb.giveCardsAfterComputerMove();
+	updateTable(tb);
+	enableButtons();
+	timer5->Stop();
+}
+
+//Give cards after player's move
+System::Void elfernGame::MyForm::timer6_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	timer6->Stop();
+}
+
+//get tb from table
 table elfernGame::MyForm::getTable()
 {
 	table tb;
@@ -147,6 +212,8 @@ table elfernGame::MyForm::getTable()
 	return tb;
 }
 
+
+//reset names on buttoms
 void elfernGame::MyForm::resetNames(table tb)
 {
 	for (int i = 0; i < 32; i++) {

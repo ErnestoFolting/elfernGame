@@ -116,6 +116,9 @@ namespace elfernGame {
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Timer^ timer2;
 	private: System::Windows::Forms::Timer^ timer3;
+	private: System::Windows::Forms::Timer^ timer4;
+	private: System::Windows::Forms::Timer^ timer5;
+	private: System::Windows::Forms::Timer^ timer6;
 
 
 
@@ -260,6 +263,9 @@ namespace elfernGame {
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer4 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer5 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer6 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -656,6 +662,7 @@ namespace elfernGame {
 			// button33
 			// 
 			this->button33->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button33->Enabled = false;
 			this->button33->Location = System::Drawing::Point(19, 22);
 			this->button33->Name = L"button33";
 			this->button33->Size = System::Drawing::Size(111, 180);
@@ -666,6 +673,7 @@ namespace elfernGame {
 			// button34
 			// 
 			this->button34->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button34->Enabled = false;
 			this->button34->Location = System::Drawing::Point(48, 22);
 			this->button34->Name = L"button34";
 			this->button34->Size = System::Drawing::Size(111, 180);
@@ -676,6 +684,7 @@ namespace elfernGame {
 			// button35
 			// 
 			this->button35->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button35->Enabled = false;
 			this->button35->Location = System::Drawing::Point(77, 22);
 			this->button35->Name = L"button35";
 			this->button35->Size = System::Drawing::Size(111, 180);
@@ -686,6 +695,7 @@ namespace elfernGame {
 			// button36
 			// 
 			this->button36->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button36->Enabled = false;
 			this->button36->Location = System::Drawing::Point(107, 22);
 			this->button36->Name = L"button36";
 			this->button36->Size = System::Drawing::Size(111, 180);
@@ -696,6 +706,7 @@ namespace elfernGame {
 			// button37
 			// 
 			this->button37->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button37->Enabled = false;
 			this->button37->Location = System::Drawing::Point(136, 22);
 			this->button37->Name = L"button37";
 			this->button37->Size = System::Drawing::Size(111, 180);
@@ -706,6 +717,7 @@ namespace elfernGame {
 			// button38
 			// 
 			this->button38->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button38->Enabled = false;
 			this->button38->Location = System::Drawing::Point(165, 22);
 			this->button38->Name = L"button38";
 			this->button38->Size = System::Drawing::Size(111, 180);
@@ -716,6 +728,7 @@ namespace elfernGame {
 			// button39
 			// 
 			this->button39->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button39->Enabled = false;
 			this->button39->Location = System::Drawing::Point(194, 22);
 			this->button39->Name = L"button39";
 			this->button39->Size = System::Drawing::Size(111, 180);
@@ -726,6 +739,7 @@ namespace elfernGame {
 			// button40
 			// 
 			this->button40->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button40->Enabled = false;
 			this->button40->Location = System::Drawing::Point(224, 22);
 			this->button40->Name = L"button40";
 			this->button40->Size = System::Drawing::Size(111, 180);
@@ -736,6 +750,7 @@ namespace elfernGame {
 			// button41
 			// 
 			this->button41->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button41->Enabled = false;
 			this->button41->Location = System::Drawing::Point(253, 22);
 			this->button41->Name = L"button41";
 			this->button41->Size = System::Drawing::Size(111, 180);
@@ -746,6 +761,7 @@ namespace elfernGame {
 			// button42
 			// 
 			this->button42->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button42->Enabled = false;
 			this->button42->Location = System::Drawing::Point(282, 22);
 			this->button42->Name = L"button42";
 			this->button42->Size = System::Drawing::Size(111, 180);
@@ -756,6 +772,7 @@ namespace elfernGame {
 			// button43
 			// 
 			this->button43->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button43->Enabled = false;
 			this->button43->Location = System::Drawing::Point(311, 22);
 			this->button43->Name = L"button43";
 			this->button43->Size = System::Drawing::Size(111, 180);
@@ -766,6 +783,7 @@ namespace elfernGame {
 			// button44
 			// 
 			this->button44->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button44->Enabled = false;
 			this->button44->Location = System::Drawing::Point(341, 22);
 			this->button44->Name = L"button44";
 			this->button44->Size = System::Drawing::Size(111, 180);
@@ -776,6 +794,7 @@ namespace elfernGame {
 			// button45
 			// 
 			this->button45->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button45->Enabled = false;
 			this->button45->Location = System::Drawing::Point(370, 22);
 			this->button45->Name = L"button45";
 			this->button45->Size = System::Drawing::Size(111, 180);
@@ -786,6 +805,7 @@ namespace elfernGame {
 			// button46
 			// 
 			this->button46->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button46->Enabled = false;
 			this->button46->Location = System::Drawing::Point(399, 22);
 			this->button46->Name = L"button46";
 			this->button46->Size = System::Drawing::Size(111, 180);
@@ -796,6 +816,7 @@ namespace elfernGame {
 			// button47
 			// 
 			this->button47->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button47->Enabled = false;
 			this->button47->Location = System::Drawing::Point(428, 22);
 			this->button47->Name = L"button47";
 			this->button47->Size = System::Drawing::Size(111, 180);
@@ -806,6 +827,7 @@ namespace elfernGame {
 			// button48
 			// 
 			this->button48->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button48->Enabled = false;
 			this->button48->Location = System::Drawing::Point(458, 22);
 			this->button48->Name = L"button48";
 			this->button48->Size = System::Drawing::Size(111, 180);
@@ -816,6 +838,7 @@ namespace elfernGame {
 			// button49
 			// 
 			this->button49->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button49->Enabled = false;
 			this->button49->Location = System::Drawing::Point(487, 22);
 			this->button49->Name = L"button49";
 			this->button49->Size = System::Drawing::Size(111, 180);
@@ -826,6 +849,7 @@ namespace elfernGame {
 			// button50
 			// 
 			this->button50->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button50->Enabled = false;
 			this->button50->Location = System::Drawing::Point(516, 22);
 			this->button50->Name = L"button50";
 			this->button50->Size = System::Drawing::Size(111, 180);
@@ -836,6 +860,7 @@ namespace elfernGame {
 			// button51
 			// 
 			this->button51->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button51->Enabled = false;
 			this->button51->Location = System::Drawing::Point(545, 22);
 			this->button51->Name = L"button51";
 			this->button51->Size = System::Drawing::Size(111, 180);
@@ -846,6 +871,7 @@ namespace elfernGame {
 			// button52
 			// 
 			this->button52->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button52->Enabled = false;
 			this->button52->Location = System::Drawing::Point(575, 22);
 			this->button52->Name = L"button52";
 			this->button52->Size = System::Drawing::Size(111, 180);
@@ -856,6 +882,7 @@ namespace elfernGame {
 			// button53
 			// 
 			this->button53->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button53->Enabled = false;
 			this->button53->Location = System::Drawing::Point(604, 22);
 			this->button53->Name = L"button53";
 			this->button53->Size = System::Drawing::Size(111, 180);
@@ -866,6 +893,7 @@ namespace elfernGame {
 			// button54
 			// 
 			this->button54->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button54->Enabled = false;
 			this->button54->Location = System::Drawing::Point(633, 22);
 			this->button54->Name = L"button54";
 			this->button54->Size = System::Drawing::Size(111, 180);
@@ -876,6 +904,7 @@ namespace elfernGame {
 			// button55
 			// 
 			this->button55->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button55->Enabled = false;
 			this->button55->Location = System::Drawing::Point(662, 22);
 			this->button55->Name = L"button55";
 			this->button55->Size = System::Drawing::Size(111, 180);
@@ -886,6 +915,7 @@ namespace elfernGame {
 			// button56
 			// 
 			this->button56->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button56->Enabled = false;
 			this->button56->Location = System::Drawing::Point(692, 22);
 			this->button56->Name = L"button56";
 			this->button56->Size = System::Drawing::Size(111, 180);
@@ -896,6 +926,7 @@ namespace elfernGame {
 			// button57
 			// 
 			this->button57->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button57->Enabled = false;
 			this->button57->Location = System::Drawing::Point(721, 22);
 			this->button57->Name = L"button57";
 			this->button57->Size = System::Drawing::Size(111, 180);
@@ -906,6 +937,7 @@ namespace elfernGame {
 			// button58
 			// 
 			this->button58->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button58->Enabled = false;
 			this->button58->Location = System::Drawing::Point(750, 22);
 			this->button58->Name = L"button58";
 			this->button58->Size = System::Drawing::Size(111, 180);
@@ -916,6 +948,7 @@ namespace elfernGame {
 			// button59
 			// 
 			this->button59->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button59->Enabled = false;
 			this->button59->Location = System::Drawing::Point(779, 22);
 			this->button59->Name = L"button59";
 			this->button59->Size = System::Drawing::Size(111, 180);
@@ -926,6 +959,7 @@ namespace elfernGame {
 			// button60
 			// 
 			this->button60->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button60->Enabled = false;
 			this->button60->Location = System::Drawing::Point(809, 22);
 			this->button60->Name = L"button60";
 			this->button60->Size = System::Drawing::Size(111, 180);
@@ -936,6 +970,7 @@ namespace elfernGame {
 			// button61
 			// 
 			this->button61->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button61->Enabled = false;
 			this->button61->Location = System::Drawing::Point(838, 22);
 			this->button61->Name = L"button61";
 			this->button61->Size = System::Drawing::Size(111, 180);
@@ -946,6 +981,7 @@ namespace elfernGame {
 			// button62
 			// 
 			this->button62->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button62->Enabled = false;
 			this->button62->Location = System::Drawing::Point(867, 22);
 			this->button62->Name = L"button62";
 			this->button62->Size = System::Drawing::Size(111, 180);
@@ -956,6 +992,7 @@ namespace elfernGame {
 			// button63
 			// 
 			this->button63->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button63->Enabled = false;
 			this->button63->Location = System::Drawing::Point(896, 22);
 			this->button63->Name = L"button63";
 			this->button63->Size = System::Drawing::Size(111, 180);
@@ -966,6 +1003,7 @@ namespace elfernGame {
 			// button64
 			// 
 			this->button64->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button64->Enabled = false;
 			this->button64->Location = System::Drawing::Point(926, 22);
 			this->button64->Name = L"button64";
 			this->button64->Size = System::Drawing::Size(111, 180);
@@ -1089,6 +1127,25 @@ namespace elfernGame {
 			this->timer2->Interval = 2000;
 			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
 			// 
+			// timer3
+			// 
+			this->timer3->Interval = 2000;
+			this->timer3->Tick += gcnew System::EventHandler(this, &MyForm::timer3_Tick);
+			// 
+			// timer4
+			// 
+			this->timer4->Interval = 2000;
+			this->timer4->Tick += gcnew System::EventHandler(this, &MyForm::timer4_Tick);
+			// 
+			// timer5
+			// 
+			this->timer5->Interval = 2000;
+			this->timer5->Tick += gcnew System::EventHandler(this, &MyForm::timer5_Tick);
+			// 
+			// timer6
+			// 
+			this->timer6->Tick += gcnew System::EventHandler(this, &MyForm::timer6_Tick);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1185,6 +1242,7 @@ namespace elfernGame {
 	cli::array<Button^>^ buttonsComputer = gcnew cli::array<Button^>(32);
 	private: void updateTable(table tb);
 	private: void playerMove(int cardId);
+	private: void playerAnswer(int cardId);
 	private: table getTable();
 	private: void resetNames(table tb);
 	private: void disableButtons();
@@ -1287,5 +1345,9 @@ private: System::Void button32_Click(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
 private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer3_Tick(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer4_Tick(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer5_Tick(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer6_Tick(System::Object^ sender, System::EventArgs^ e);
 };
 }
