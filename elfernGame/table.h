@@ -186,6 +186,7 @@ struct table {
 			if (computerCards[i] >= 12)temp++;
 			if (computerCards[i] >= 24)temp++;
 		}
+		return temp;
 	}
 	int checkPlayerOwners() {
 		int temp = 0;
@@ -193,6 +194,7 @@ struct table {
 			if (playerCards[i] >= 12)temp++;
 			if (playerCards[i] >= 24)temp++;
 		}
+		return temp;
 	}
 	int staticEvaluate() {
 		return checkComputerOwners() - checkPlayerOwners();

@@ -145,8 +145,11 @@ System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::Eve
 System::Void elfernGame::MyForm::timer3_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	childrenFromPosition(tb);
-	tb.computerMove(0);
+	vector<child> children = childrenFromPosition(tb);
+	child temp;
+	temp.childTable = tb;
+	int cardIdToMove = children[minimax(temp, 1, -100, 100, true)].cardToMoveId;
+	tb.computerMove(cardIdToMove);
 	label2->Visible = true;
 	updateTable(tb);
 	status->Text = "Your move";
@@ -229,9 +232,26 @@ table elfernGame::MyForm::getTable()
 }
 
 
-int elfernGame::MyForm::minimax(table position, int depth, int alpha, int beta, bool maximizingPlayer)
+int elfernGame::MyForm::minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer)
 {
-	return 0;
+	if (depth == 0 ) {
+		return position.childTable.staticEvaluate();
+	}
+	if (maximizingPlayer) {
+		int maxEval = -100;
+		vector<child> children = childrenFromPosition(position.childTable);
+		int childPos = 0;
+		for (int i = 0; i < children.size(); i++) {
+			int eval = minimax(children[i], depth - 1, alpha, beta, false);
+			if (eval > maxEval)childPos = i;
+			maxEval = max(maxEval, eval);
+			alpha = max(alpha, eval);
+			if (beta <= alpha) {
+				break;
+			}
+		}
+		return childPos;
+	}
 }
 
 //vector<int> kalahaGame::MyForm::minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer)
@@ -318,6 +338,7 @@ vector<child> elfernGame::MyForm::childrenFromPosition(table tb)
 				child tempChild;
 				tempChild.childTable = temp;
 				tempChild.chance = possibleCards[j].chance;
+				tempChild.cardToMoveId = i;
 				children.push_back(tempChild);
 			}
 		}
@@ -489,7 +510,7 @@ System::Void elfernGame::MyForm::button68_Click(System::Object^ sender, System::
 	label3->Visible = true;
 	label4->Visible = true;
 	label5->Visible = true;
-	
+	label6->Text = "";
 }
 
 

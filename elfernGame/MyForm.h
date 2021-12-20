@@ -9,6 +9,7 @@
 struct child {
 	table childTable;
 	double chance;
+	int cardToMoveId;
 };
 
 
@@ -1309,7 +1310,7 @@ private: System::Windows::Forms::Label^ label6;
 	private: void playerMove(int cardId);
 	private: void playerAnswer(int cardId);
 	private: vector<child> childrenFromPosition(table tb);
-	private: int minimax(table position, int depth, int alpha, int beta, bool maximizingPlayer);
+	private: int minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer);
 	private: table getTable();
 	private: void resetNames();
 	private: void disableButtons();
