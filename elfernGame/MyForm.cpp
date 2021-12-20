@@ -46,9 +46,9 @@ void elfernGame::MyForm::updateTable(table tb)
 
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
-		//buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
+		buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
 		buttonsComputer[i]->Name = Convert::ToString(tb.computerCards[i]);
-		buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
+		//buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
 
 	}
 
@@ -241,15 +241,31 @@ int elfernGame::MyForm::minimax(child position, int depth, int alpha, int beta, 
 		int maxEval = -100;
 		vector<child> children = childrenFromPosition(position.childTable);
 		int childPos = 0;
+		double tempSum = 0;
 		for (int i = 0; i < children.size(); i++) {
-			int eval = minimax(children[i], depth - 1, alpha, beta, false);
-			if (eval > maxEval)childPos = i;
-			maxEval = max(maxEval, eval);
-			alpha = max(alpha, eval);
-			if (beta <= alpha) {
-				break;
+			 tempSum += double(minimax(children[i], depth - 1, alpha, beta, false)) * children[i].chance;
+		}
+		vector<double> difference;
+		for (int i = 0; i < children.size(); i++) {
+			difference.push_back(abs(children[i].chance * double(children[i].childTable.staticEvaluate()) - tempSum));
+		}
+		double minDif = *min_element(difference.begin(),difference.end());
+		double eval;
+		int pos;
+		for (int i = 0; i < difference.size(); i++) {
+			if (minDif == difference[i]) {
+				eval = children[i].childTable.staticEvaluate();
+				pos = i;
 			}
 		}
+		if (eval > maxEval)childPos = pos;
+		maxEval = max(maxEval, eval);
+		/*
+		alpha = max(alpha, eval);
+		if (beta <= alpha) {
+			break;
+		}
+		*/
 		return childPos;
 	}
 }
