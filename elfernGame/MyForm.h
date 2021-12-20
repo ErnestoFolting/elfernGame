@@ -2,7 +2,24 @@
 
 #include <ctime>
 #include <vector>
+#include <string>
 #include "table.h"
+#include <msclr\marshal_cppstd.h>
+
+struct child {
+	table childTable;
+	double chance;
+};
+
+
+struct card {
+	int id;
+	double chance;
+	card(int id, double chance) {
+		this->id = id;
+		this->chance = chance;
+	}
+};
 
 namespace elfernGame {
 
@@ -121,6 +138,7 @@ namespace elfernGame {
 	private: System::Windows::Forms::Timer^ timer6;
 private: System::Windows::Forms::Label^ label4;
 private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::Label^ label6;
 
 
 
@@ -270,6 +288,7 @@ private: System::Windows::Forms::Label^ label5;
 			this->timer6 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -1179,12 +1198,23 @@ private: System::Windows::Forms::Label^ label5;
 			this->label5->Text = L"1";
 			this->label5->Visible = false;
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"MK-90", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label6->Location = System::Drawing::Point(775, 235);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(0, 21);
+			this->label6->TabIndex = 5;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGreen;
 			this->ClientSize = System::Drawing::Size(1099, 666);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->statusStrip1);
@@ -1278,6 +1308,8 @@ private: System::Windows::Forms::Label^ label5;
 	private: void updateTable(table tb);
 	private: void playerMove(int cardId);
 	private: void playerAnswer(int cardId);
+	private: vector<child> childrenFromPosition(table tb);
+	private: int minimax(table position, int depth, int alpha, int beta, bool maximizingPlayer);
 	private: table getTable();
 	private: void resetNames();
 	private: void disableButtons();

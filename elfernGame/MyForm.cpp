@@ -46,9 +46,9 @@ void elfernGame::MyForm::updateTable(table tb)
 
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
-		buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
+		//buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
 		buttonsComputer[i]->Name = Convert::ToString(tb.computerCards[i]);
-		//buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
+		buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
 
 	}
 
@@ -115,6 +115,9 @@ void elfernGame::MyForm::playerAnswer(int cardId)
 System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
+
+	//here must be evaluation of 2 moves to move for computer
+
 	tb.computerAnswer();
 	label2->Visible = true;
 	updateTable(tb);
@@ -126,7 +129,9 @@ System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::Eve
 System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	tb.movePlayerFirst();
+	if (tb.movePlayerFirst()) {
+		label6->Text += tb.playerCards[tb.playerCards.size() - 1] + " " + tb.playerCards[tb.playerCards.size() - 2] + " ";
+	}
 	label1->Visible = false;
 	label2->Visible = false;
 	button65->Visible = false;
@@ -140,7 +145,8 @@ System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::Eve
 System::Void elfernGame::MyForm::timer3_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	tb.computerMove();
+	childrenFromPosition(tb);
+	tb.computerMove(0);
 	label2->Visible = true;
 	updateTable(tb);
 	status->Text = "Your move";
@@ -154,7 +160,9 @@ System::Void elfernGame::MyForm::timer4_Tick(System::Object^ sender, System::Eve
 
 	
 	table tb = getTable();
-	tb.moveComputerFirst();
+	if (tb.moveComputerFirst()) {
+		label6->Text += tb.playerCards[tb.playerCards.size() - 1] + " " + tb.playerCards[tb.playerCards.size() - 2] + " ";
+	}
 	label1->Visible = false;
 	label2->Visible = false;
 	button65->Visible = false;
@@ -220,6 +228,102 @@ table elfernGame::MyForm::getTable()
 	return tb;
 }
 
+
+int elfernGame::MyForm::minimax(table position, int depth, int alpha, int beta, bool maximizingPlayer)
+{
+	return 0;
+}
+
+//vector<int> kalahaGame::MyForm::minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer)
+//{
+//	if (depth == 0 || minimaxGameOverCheck(position)) {
+//		vector<int> temp;
+//		temp.push_back(staticEvaluation(position));
+//		return temp;
+//	}
+//	if (maximizingPlayer) {
+//		int maxEval = -100;
+//		vector<child>children = childrenFromPosition(position);
+//		int childPos = 0;
+//		for (int i = 0; i < children.size(); i++) {
+//			int eval = minimax(children[i], depth - 1, alpha, beta, false)[0];
+//			if (eval > maxEval) childPos = i;
+//			maxEval = max(maxEval, eval);
+//			alpha = max(alpha, eval);
+//			if (beta <= alpha) {
+//				break;
+//			}
+//		}
+//		vector<int> temp;
+//		temp.push_back(maxEval);
+//		temp.push_back(childPos);
+//		return temp;
+//	}
+//	else {
+//		int minEval = 100;
+//		vector<child>children = childrenFromPosition(position);
+//		int childPos = 0;
+//		for (int i = 0; i < children.size(); i++) {
+//			int eval = minimax(children[i], depth - 1, alpha, beta, true)[0];
+//			if (eval < minEval) childPos = i;
+//			minEval = min(minEval, eval);
+//			beta = min(beta, eval);
+//			if (beta <= alpha) {
+//				break;
+//			}
+//		}
+//		vector<int> temp;
+//		temp.push_back(minEval);
+//		temp.push_back(childPos);
+//		return temp;
+//	}
+//}
+
+vector<child> elfernGame::MyForm::childrenFromPosition(table tb)
+{
+	System::String^ temp = label6->Text;
+	std::string showedCards = msclr::interop::marshal_as<std::string>(temp);
+	vector<card> possibleCards;
+	for (int i = 0; i < 32; i++) {
+		possibleCards.push_back(card(i, 0));
+	}
+	int counterShowedCards = 0;
+	while (showedCards.length() != 0) {
+		int k = showedCards.find(" ");
+		int cardId = stoi(showedCards.substr(0, k));
+		showedCards.erase(0, k + 1);
+		possibleCards[cardId].chance = 1;
+		counterShowedCards++;
+	}
+	double counterUnshowedCards = tb.playerCards.size() - counterShowedCards;
+	double chance = counterUnshowedCards / (counterUnshowedCards + double(tb.deck.size()));
+	for (int i = 0; i < 32; i++) {
+		if (!tb.contains(tb.computerCards, i) && possibleCards[i].chance != 1) {
+			possibleCards[i].chance = chance;
+		}
+	}
+	vector<child> children;
+	vector<table> tempChildren;
+	for (int i = 0; i < tb.computerCards.size(); i++) {
+		table temp = tb;
+		temp.computerMove(i);
+		tempChildren.push_back(temp);
+	}
+	for (int i = 0; i < tempChildren.size(); i++) {
+		for (int j = 0; j < possibleCards.size(); j++) {
+			if (possibleCards[j].chance != 0) {
+				table temp = tempChildren[i];
+				temp.playerPossibleMove(j);
+				temp.moveComputerFirst();
+				child tempChild;
+				tempChild.childTable = temp;
+				tempChild.chance = possibleCards[j].chance;
+				children.push_back(tempChild);
+			}
+		}
+	}
+	return children;
+}
 
 //reset names on buttoms
 void elfernGame::MyForm::resetNames()

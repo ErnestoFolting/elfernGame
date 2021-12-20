@@ -10,4 +10,9 @@ struct card {
 			owner = true;
 		}
 	}
+	card() {
+		value = -1;
+		suit = -1;
+		owner = false;
+	}
 };

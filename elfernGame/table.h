@@ -4,6 +4,7 @@
 #include <algorithm> 
 using namespace std;
 
+
 struct table {
 	vector<int> deck;
 	vector<int> playerCards;
@@ -61,17 +62,36 @@ struct table {
 		playerCurrent = playerCards[cardId];
 		removeFromPlayerHand(playerCards[cardId]);
 	}
-	void computerMove() {
-		int cardId = rand() % computerCards.size();
-		computerCurrent = computerCards[cardId];
-		removeFromComputerHand(computerCards[cardId]);
+	void playerPossibleMove(int cardId) {
+		playerCurrent = cardId;
+		removeFromPlayerHand(cardId);
 	}
 	void computerAnswer() {
-		int cardId = rand() % computerCards.size();
-		computerCurrent = computerCards[cardId];
-		removeFromComputerHand(computerCards[cardId]);
+		vector<int>equalSuits;
+		bool flag = false;
+		for (int i = 0; i < computerCards.size(); i++) {
+			if (computerCards[i] % 4 == playerCurrent % 4) {
+				equalSuits.push_back(computerCards[i]);
+				flag = true;
+			}
+		}
+		if (flag) {
+			computerCurrent = *min_element(equalSuits.begin(),equalSuits.end());
+			removeFromComputerHand(computerCurrent);
+		}
+		else {
+			computerCurrent = *min_element(computerCards.begin(), computerCards.end());
+			removeFromComputerHand(computerCurrent);
+		}
 	}
-	void movePlayerFirst() {
+	void computerMove(int cardIdToMove) {
+		computerCurrent = computerCards[cardIdToMove];
+		removeFromComputerHand(computerCards[cardIdToMove]);
+	}
+
+	//Look at table and give 2 cards to winner of draw after player first
+	bool movePlayerFirst() {
+		bool flag = false;
 		int valuePlayer = (playerCurrent) / 4;
 		int valueComputer = (computerCurrent) / 4;
 		int suitPlayer = playerCurrent % 4;
@@ -80,6 +100,7 @@ struct table {
 			if (valuePlayer >= valueComputer) {
 				playerCards.push_back(computerCurrent);
 				playerCards.push_back(playerCurrent);
+				flag = true;
 			}
 			else {
 				computerCards.push_back(playerCurrent);
@@ -89,12 +110,17 @@ struct table {
 		else {
 			playerCards.push_back(computerCurrent);
 			playerCards.push_back(playerCurrent);
+			flag = true;
 		}
 		
 		playerCurrent = -1;
 		computerCurrent = -1;
+		return flag;
 	}
-	void moveComputerFirst() {
+
+	//Look at table and give 2 cards to winner of draw after computer first
+	bool moveComputerFirst() {
+		bool flag = false;
 		int valuePlayer = (playerCurrent) / 4;
 		int valueComputer = (computerCurrent) / 4;
 		int suitPlayer = playerCurrent % 4;
@@ -103,6 +129,7 @@ struct table {
 			if (valuePlayer > valueComputer) {
 				playerCards.push_back(computerCurrent);
 				playerCards.push_back(playerCurrent);
+				flag = true;
 			}
 			else {
 				computerCards.push_back(playerCurrent);
@@ -115,6 +142,7 @@ struct table {
 		}
 		playerCurrent = -1;
 		computerCurrent = -1;
+		return flag;
 	}
 
 	void removeFromDeck(int cardId) {
@@ -148,4 +176,72 @@ struct table {
 			deck.pop_back();
 		}
 	}
+
+	
+	//--------------------------------------------
+
+	int checkComputerOwners() {
+		int temp = 0;
+		for (int i = 0; i < computerCards.size(); i++) {
+			if (computerCards[i] >= 12)temp++;
+			if (computerCards[i] >= 24)temp++;
+		}
+	}
+	int checkPlayerOwners() {
+		int temp = 0;
+		for (int i = 0; i < playerCards.size(); i++) {
+			if (playerCards[i] >= 12)temp++;
+			if (playerCards[i] >= 24)temp++;
+		}
+	}
+	int staticEvaluate() {
+		return checkComputerOwners() - checkPlayerOwners();
+	}
+
+
+	/*vector<int> kalahaGame::MyForm::minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer)
+	{
+		if (depth == 0 || minimaxGameOverCheck(position)) {
+			vector<int> temp;
+			temp.push_back(staticEvaluation(position));
+			return temp;
+		}
+		if (maximizingPlayer) {
+			int maxEval = -100;
+			vector<child>children = childrenFromPosition(position);
+			int childPos = 0;
+			for (int i = 0; i < children.size(); i++) {
+				int eval = minimax(children[i], depth - 1, alpha, beta, false)[0];
+				if (eval > maxEval) childPos = i;
+				maxEval = max(maxEval, eval);
+				alpha = max(alpha, eval);
+				if (beta <= alpha) {
+					break;
+				}
+			}
+			vector<int> temp;
+			temp.push_back(maxEval);
+			temp.push_back(childPos);
+			return temp;
+		}
+		else {
+			int minEval = 100;
+			vector<child>children = childrenFromPosition(position);
+			int childPos = 0;
+			for (int i = 0; i < children.size(); i++) {
+				int eval = minimax(children[i], depth - 1, alpha, beta, true)[0];
+				if (eval < minEval) childPos = i;
+				minEval = min(minEval, eval);
+				beta = min(beta, eval);
+				if (beta <= alpha) {
+					break;
+				}
+			}
+			vector<int> temp;
+			temp.push_back(minEval);
+			temp.push_back(childPos);
+			return temp;
+		}
+	}*/
+
 };
