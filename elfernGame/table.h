@@ -61,14 +61,53 @@ struct table {
 		playerCurrent = playerCards[cardId];
 		removeFromPlayerHand(playerCards[cardId]);
 	}
-	void computerMove(int cardId) {
+	void computerMove() {
+		int cardId = rand() % computerCards.size();
 		computerCurrent = computerCards[cardId];
 		removeFromComputerHand(computerCards[cardId]);
 	}
-	void move() {
-		if (playerCurrent > computerCurrent) {
+	void computerAnswer() {
+		int cardId = rand() % computerCards.size();
+		computerCurrent = computerCards[cardId];
+		removeFromComputerHand(computerCards[cardId]);
+	}
+	void movePlayerFirst() {
+		int valuePlayer = (playerCurrent) / 4;
+		int valueComputer = (computerCurrent) / 4;
+		int suitPlayer = playerCurrent % 4;
+		int suitComputer = computerCurrent % 4;
+		if (suitPlayer == suitComputer) {
+			if (valuePlayer >= valueComputer) {
+				playerCards.push_back(computerCurrent);
+				playerCards.push_back(playerCurrent);
+			}
+			else {
+				computerCards.push_back(playerCurrent);
+				computerCards.push_back(computerCurrent);
+			}
+		}
+		else {
 			playerCards.push_back(computerCurrent);
 			playerCards.push_back(playerCurrent);
+		}
+		
+		playerCurrent = -1;
+		computerCurrent = -1;
+	}
+	void moveComputerFirst() {
+		int valuePlayer = (playerCurrent) / 4;
+		int valueComputer = (computerCurrent) / 4;
+		int suitPlayer = playerCurrent % 4;
+		int suitComputer = computerCurrent % 4;
+		if (suitPlayer == suitComputer) {
+			if (valuePlayer > valueComputer) {
+				playerCards.push_back(computerCurrent);
+				playerCards.push_back(playerCurrent);
+			}
+			else {
+				computerCards.push_back(playerCurrent);
+				computerCards.push_back(computerCurrent);
+			}
 		}
 		else {
 			computerCards.push_back(playerCurrent);

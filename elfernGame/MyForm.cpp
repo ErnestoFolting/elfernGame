@@ -19,7 +19,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 void elfernGame::MyForm::updateTable(table tb)
 {
 
-	resetNames(tb);
+	resetNames();
 
 	if (tb.playerCards.size() != 0) {
 		for (int i = tb.playerCards.size() - 1; i >= 0; i--) {
@@ -115,8 +115,7 @@ void elfernGame::MyForm::playerAnswer(int cardId)
 System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	int cardToMove = rand() % tb.computerCards.size();
-	tb.computerMove(cardToMove);
+	tb.computerAnswer();
 	label2->Visible = true;
 	updateTable(tb);
 	timer1->Stop();
@@ -127,7 +126,7 @@ System::Void elfernGame::MyForm::timer1_Tick(System::Object^ sender, System::Eve
 System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	tb.move();
+	tb.movePlayerFirst();
 	label1->Visible = false;
 	label2->Visible = false;
 	button65->Visible = false;
@@ -141,8 +140,7 @@ System::Void elfernGame::MyForm::timer2_Tick(System::Object^ sender, System::Eve
 System::Void elfernGame::MyForm::timer3_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	table tb = getTable();
-	int cardToMove = rand() % tb.computerCards.size();
-	tb.computerMove(cardToMove);
+	tb.computerMove();
 	label2->Visible = true;
 	updateTable(tb);
 	status->Text = "Your move";
@@ -156,7 +154,7 @@ System::Void elfernGame::MyForm::timer4_Tick(System::Object^ sender, System::Eve
 
 	
 	table tb = getTable();
-	tb.move();
+	tb.moveComputerFirst();
 	label1->Visible = false;
 	label2->Visible = false;
 	button65->Visible = false;
@@ -172,7 +170,10 @@ System::Void elfernGame::MyForm::timer5_Tick(System::Object^ sender, System::Eve
 	table tb = getTable();
 	tb.giveCardsAfterComputerMove();
 	updateTable(tb);
-	enableButtons();
+	if (!finishCheck()) {
+		label5->Text = Convert::ToString(Convert::ToInt32(label5->Text) + 1);
+		enableButtons();
+	}
 	timer5->Stop();
 }
 
@@ -183,7 +184,10 @@ System::Void elfernGame::MyForm::timer6_Tick(System::Object^ sender, System::Eve
 	tb.giveCardsAfterPlayerMove();
 	updateTable(tb);
 	timer6->Stop();
-	timer3->Start();
+	if (!finishCheck()) {
+		label5->Text = Convert::ToString(Convert::ToInt32(label5->Text) + 1);
+		timer3->Start();
+	}
 }
 
 //get tb from table
@@ -218,7 +222,7 @@ table elfernGame::MyForm::getTable()
 
 
 //reset names on buttoms
-void elfernGame::MyForm::resetNames(table tb)
+void elfernGame::MyForm::resetNames()
 {
 	for (int i = 0; i < 32; i++) {
 		buttonsPlayer[i]->Name = "";
@@ -240,6 +244,51 @@ void elfernGame::MyForm::enableButtons()
 	for (int i = 0; i < 32; i++) {
 		buttonsPlayer[i]->Enabled = true;
 	}
+}
+
+void elfernGame::MyForm::hideButtons()
+{
+	for (int i = 0; i < 32; i++) {
+		buttonsPlayer[i]->Visible = false;
+		buttonsComputer[i]->Visible = false;
+	}
+}
+
+bool elfernGame::MyForm::finishCheck()
+{
+	if (label5->Text == "2") {
+		table tb = getTable();
+		int computerOwners;
+		int playerOwners;
+		for (int i = 0; i < tb.computerCards.size(); i++) {
+			if (tb.computerCards[i] >= 12)computerOwners++;
+		}
+		for (int i = 0; i < tb.playerCards.size(); i++) {
+			if (tb.playerCards[i] >= 12)playerOwners++;
+		}
+		if (computerOwners == playerOwners) {
+			status->BackColor = System::Drawing::Color::Yellow;
+			status->Text = "Draw! Computer and player have 10 owners.";
+		}
+		else if (computerOwners > playerOwners) {
+			status->BackColor = System::Drawing::Color::Red; 
+			status->Text = "Not bad, but... Computer has won with " + Convert::ToString(computerOwners) + " owners";
+		}
+		else {
+			status->BackColor = System::Drawing::Color::Green;
+			status->Text = "Nice!You have won with " + Convert::ToString(playerOwners) + " owners";
+		}
+		resetNames();
+		hideButtons();
+		button68->Visible = true;
+		label4->Visible = false;
+		label5->Visible = false;
+		label5->Text = "1";
+		button67->Visible = false;
+		label3->Visible = false;
+		return true;
+	}
+	return false;
 }
 
 System::Void elfernGame::MyForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -328,10 +377,15 @@ System::Void elfernGame::MyForm::button68_Click(System::Object^ sender, System::
 	table tb;
 	tb.start();
 	updateTable(tb);
+	enableButtons();
 	button68->Visible = false;
+	status->BackColor = System::Drawing::Color::White;
 	status->Text = "Your move";
 	button67->Visible = true;
 	label3->Visible = true;
+	label4->Visible = true;
+	label5->Visible = true;
+	
 }
 
 

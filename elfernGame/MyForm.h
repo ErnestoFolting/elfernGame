@@ -119,6 +119,8 @@ namespace elfernGame {
 	private: System::Windows::Forms::Timer^ timer4;
 	private: System::Windows::Forms::Timer^ timer5;
 	private: System::Windows::Forms::Timer^ timer6;
+private: System::Windows::Forms::Label^ label4;
+private: System::Windows::Forms::Label^ label5;
 
 
 
@@ -266,6 +268,8 @@ namespace elfernGame {
 			this->timer4 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer5 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer6 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -1111,10 +1115,10 @@ namespace elfernGame {
 			// status
 			// 
 			this->status->BackColor = System::Drawing::Color::White;
-			this->status->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
+			this->status->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->status->Name = L"status";
-			this->status->Size = System::Drawing::Size(91, 25);
+			this->status->Size = System::Drawing::Size(119, 25);
 			this->status->Text = L"Let\'s Start!";
 			// 
 			// timer1
@@ -1147,12 +1151,42 @@ namespace elfernGame {
 			this->timer6->Interval = 2000;
 			this->timer6->Tick += gcnew System::EventHandler(this, &MyForm::timer6_Tick);
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::Color::DarkGreen;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->ForeColor = System::Drawing::Color::White;
+			this->label4->Location = System::Drawing::Point(224, 244);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(84, 33);
+			this->label4->TabIndex = 4;
+			this->label4->Text = L"Draw #";
+			this->label4->Visible = false;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::Color::DarkGreen;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->ForeColor = System::Drawing::Color::White;
+			this->label5->Location = System::Drawing::Point(250, 277);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(27, 33);
+			this->label5->TabIndex = 4;
+			this->label5->Text = L"1";
+			this->label5->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGreen;
 			this->ClientSize = System::Drawing::Size(1099, 666);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->statusStrip1);
 			this->Controls->Add(this->button68);
 			this->Controls->Add(this->label3);
@@ -1245,9 +1279,11 @@ namespace elfernGame {
 	private: void playerMove(int cardId);
 	private: void playerAnswer(int cardId);
 	private: table getTable();
-	private: void resetNames(table tb);
+	private: void resetNames();
 	private: void disableButtons();
 	private: void enableButtons();
+	private: void hideButtons();
+	private: bool finishCheck();
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button68_Click(System::Object^ sender, System::EventArgs^ e);
