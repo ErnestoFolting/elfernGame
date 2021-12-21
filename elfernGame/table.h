@@ -66,6 +66,10 @@ struct table {
 		playerCurrent = cardId;
 		removeFromPlayerHand(cardId);
 	}
+	void computerPossibleMove(int cardId) {
+		computerCurrent = cardId;
+		removeFromComputerHand(cardId);
+	}
 	void computerAnswer() {
 		vector<int>equalSuits;
 		bool flag = false;
@@ -76,8 +80,18 @@ struct table {
 			}
 		}
 		if (flag) {
-			computerCurrent = *min_element(equalSuits.begin(),equalSuits.end());
-			removeFromComputerHand(computerCurrent);
+			vector<int> canBeat;
+			for (int i = 0; i < equalSuits.size(); i++) {
+				if (equalSuits[i] > playerCurrent)canBeat.push_back(equalSuits[i]);
+			}
+			if (canBeat.size() != 0) {
+				computerCurrent = *min_element(canBeat.begin(), canBeat.end());
+				removeFromComputerHand(computerCurrent);
+			}
+			else {
+				computerCurrent = *min_element(equalSuits.begin(), equalSuits.end());
+				removeFromComputerHand(computerCurrent);
+			}
 		}
 		else {
 			computerCurrent = *min_element(computerCards.begin(), computerCards.end());

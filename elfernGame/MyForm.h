@@ -140,6 +140,7 @@ namespace elfernGame {
 private: System::Windows::Forms::Label^ label4;
 private: System::Windows::Forms::Label^ label5;
 private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ label7;
 
 
 
@@ -290,6 +291,7 @@ private: System::Windows::Forms::Label^ label6;
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -1208,6 +1210,17 @@ private: System::Windows::Forms::Label^ label6;
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(0, 21);
 			this->label6->TabIndex = 5;
+			this->label6->Visible = false;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"MK-90", 15.75F));
+			this->label7->Location = System::Drawing::Point(775, 384);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(0, 21);
+			this->label7->TabIndex = 6;
+			this->label7->Visible = false;
 			// 
 			// MyForm
 			// 
@@ -1215,6 +1228,7 @@ private: System::Windows::Forms::Label^ label6;
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGreen;
 			this->ClientSize = System::Drawing::Size(1099, 666);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -1310,7 +1324,8 @@ private: System::Windows::Forms::Label^ label6;
 	private: void playerMove(int cardId);
 	private: void playerAnswer(int cardId);
 	private: vector<child> childrenFromPosition(table tb);
-	private: int minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer);
+	private: vector<child> childrenFromPosition2(table tb);
+	private: vector<int> minimax(child position, int depth, int alpha, int beta, bool maximizingPlayer);
 	private: table getTable();
 	private: void resetNames();
 	private: void disableButtons();
