@@ -1063,11 +1063,11 @@ private: System::Windows::Forms::Label^ label7;
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::White;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(434, 218);
+			this->label1->Location = System::Drawing::Point(423, 212);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 23);
+			this->label1->Size = System::Drawing::Size(96, 29);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Your card";
 			this->label1->Visible = false;
@@ -1076,11 +1076,11 @@ private: System::Windows::Forms::Label^ label7;
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::White;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(600, 218);
+			this->label2->Location = System::Drawing::Point(583, 212);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(116, 23);
+			this->label2->Size = System::Drawing::Size(148, 29);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Computer\'s card";
 			this->label2->Visible = false;
@@ -1100,11 +1100,11 @@ private: System::Windows::Forms::Label^ label7;
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::Color::White;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label3->Font = (gcnew System::Drawing::Font(L"Bebas Neue Bold", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(54, 218);
+			this->label3->Location = System::Drawing::Point(50, 212);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(40, 23);
+			this->label3->Size = System::Drawing::Size(51, 29);
 			this->label3->TabIndex = 1;
 			this->label3->Text = L"Deck";
 			this->label3->Visible = false;
@@ -1177,12 +1177,12 @@ private: System::Windows::Forms::Label^ label7;
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::DarkGreen;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->label4->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(224, 244);
+			this->label4->Location = System::Drawing::Point(221, 293);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(84, 33);
+			this->label4->Size = System::Drawing::Size(91, 36);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"Draw #";
 			this->label4->Visible = false;
@@ -1191,12 +1191,12 @@ private: System::Windows::Forms::Label^ label7;
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::Color::DarkGreen;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->label5->Font = (gcnew System::Drawing::Font(L"Bebas Neue Cyrillic", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->label5->ForeColor = System::Drawing::Color::White;
-			this->label5->Location = System::Drawing::Point(250, 277);
+			this->label5->Location = System::Drawing::Point(247, 326);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(27, 33);
+			this->label5->Size = System::Drawing::Size(28, 36);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"1";
 			this->label5->Visible = false;
@@ -1305,6 +1305,7 @@ private: System::Windows::Forms::Label^ label7;
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Cursor = System::Windows::Forms::Cursors::Default;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->MinimumSize = System::Drawing::Size(1115, 705);

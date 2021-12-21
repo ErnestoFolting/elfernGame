@@ -46,9 +46,9 @@ void elfernGame::MyForm::updateTable(table tb)
 
 	//Computer's cards drawing
 	for (int i = 0; i < tb.computerCards.size();i++) {
-		//buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
+		buttonsComputer[i]->BackgroundImage = imageList1->Images[32];
 		buttonsComputer[i]->Name = Convert::ToString(tb.computerCards[i]);
-		buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
+		//buttonsComputer[i]->BackgroundImage = imageList1->Images[tb.computerCards[i]];
 
 	}
 
